@@ -9,40 +9,62 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+<!-- vue -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
+<div id="app">
     <div class="container">
        
-
+    
         <h1 class="text-center mb-5">
             Elaboratore di testo
         </h1>
     
-
+    
         <div class="row justify-content-center ">
-
+    
             <div class="col-3">
-
+    
                 <form action="testoElaborato.php">
                     
                     <label for="text-area">Inserisci qui del testo</label>
-                    <textarea name="paragrafo" class="form-control mb-4" id="text-area">
+                    <textarea v-model="textArea" name="paragrafo" class="form-control mb-4" id="text-area">
             
                     </textarea>
             
                     <label for="testo-censurato">Inserisci la parola da censurare</label>
-                    <input type="text" class="form-control mb-4" id="testo-censurato" name="censure" required>
+                    <input type="text" class="form-control mb-4" id="testo-censurato" name="censure">
             
-                    <input type="submit" class="btn btn-danger" value="Elabora">
+                    <input v-show="textArea != '' " type="submit" class="btn btn-danger" value="Elabora">
             
                 </form>
-
+    
             </div>
-
-
+    
+    
         </div>
-
-
+    
+    
     </div>
+</div>
+
+
+<script>
+
+  const { createApp } = Vue
+
+    createApp({
+        data() {
+            return {
+
+                textArea:'',
+
+            }
+        },
+        
+    }).mount('#app')
+
+</script>
 
 
     <!-- bootstrap -->

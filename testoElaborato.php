@@ -3,6 +3,8 @@
 $paragrafo = $_GET['paragrafo'];
 $censura = $_GET['censure'];
 
+$done=false;// variabile di flag per capire se la censura è avvenuta o meno
+
 ?>
 
 <!DOCTYPE html>
@@ -17,58 +19,82 @@ $censura = $_GET['censure'];
 </head>
 <body>
 
+<!-- vue -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
-    <?php
-    
+
+
+<?php
+
+if($censura != ''){
+    $done=true;
+
     $array_paragrafo = explode(" ",$paragrafo);
 
     $array_paragrafo = str_ireplace($censura,"***", $array_paragrafo);
 
     $result = implode(" ",$array_paragrafo);
 
-    ?>
+    if(strcmp($result, $paragrafo)==0){
+        $done=false;
+        $result = "La stringa non è stata modificata e non è stata applicata nessuna censura.";
+    }
+}else{
+    $result = "La stringa non è stata modificata e non è stata applicata nessuna censura.";
+}
 
 
+?>
 
-    <div class="container">
-        
-
-        <h1 class="text-center mb-5">
-            Elaboratore di testo
-        </h1>
+<div class="container">
     
 
-        <div class="row justify-content-center ">
+    <h1 class="text-center mb-5">
+        Elaboratore di testo
+    </h1>
 
-            <div class="col-3">
 
-            <div class="par-wrapper mb-4 bg-body-tertiary rounded p-3">
-                <p>
-                    <?php echo $paragrafo ?>
-                </p>
-                <div>
-                    La stringa è lunga <?php echo strlen($paragrafo); ?> lettere.
-                </div>
+    <div class="row justify-content-center ">
+
+        <div class="col-3">
+
+        <div class="par-wrapper mb-4 bg-body-tertiary rounded p-3">
+            <p>
+                <?php echo  $paragrafo;?> 
+            </p>
+            <div>
+                <?php echo  "La stringa è lunga " .strlen($paragrafo). " lettere";?> 
             </div>
+        </div>
 
 
-            <div class="par-wrapper bg-success rounded p-3 text-white">
-                <p>
-                    <?php echo $result ?>
-                </p>
+        <div class="par-wrapper bg-success rounded p-3 text-white">
+            <p>
+                <?php echo $result ?>
+            </p>
 
-                <div>
-                    La stringa censurata è lunga <?php echo strlen($result); ?> lettere.
-                </div>
+            <div>
+                <?php 
+                    if($done == true){
+                        echo "La stringa censurata è lunga ".strlen($result)." lettere."; 
+                    }
+
+                ?> 
             </div>
-
-            </div>
-
+        </div>
 
         </div>
 
 
     </div>
+
+
+</div>
+
+
+
+
+
 
 
 
