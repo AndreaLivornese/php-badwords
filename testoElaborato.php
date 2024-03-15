@@ -23,8 +23,13 @@ $censura = $_GET['censure'];
 
     $array_paragrafo = str_ireplace($censura,"***", $array_paragrafo);
 
-
+    $result = implode(" ",$array_paragrafo);
     ?>
+
+
+    <p>
+        <?php echo $result ?>
+    </p>
 
 
     
