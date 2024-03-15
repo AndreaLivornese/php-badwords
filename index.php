@@ -8,12 +8,14 @@
 <body>
 
     <form action="">
-
-        <textarea name="paragrafo" id="" cols="30" rows="5">
+        
+        <label for="text-area">Inserisci qui del testo</label>
+        <textarea name="paragrafo" id="text-area" cols="20" rows="3">
 
         </textarea>
 
-        <input type="text" name="censure" required>
+        <label for="testo-censurato">Inserisci la parola da censurare</label>
+        <input type="text" id="testo-censurato" name="censure" required>
 
     </form>
     
